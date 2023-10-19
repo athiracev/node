@@ -50,18 +50,41 @@
 
 // Setting up one more get request route on the ‘/hello’ path. 
 
-const express  = require('express');
+// const express  = require('express');
+// const app = express();
+// const PORT = 3000;
+// app.get('/home',(req,res)=>{
+//     res.set('Content-Type','text/html');
+//     res.status(200).send("<h1>hello welcome!!!</h1>");
+// });
+// app.listen(PORT,(error)=>{
+//     if(!error)
+//         console.log("server running on port "+PORT);
+//     else
+//         console.log("error occurred ",error);
+// }
+// );
+
+
+
+
+// Setting up a basic get request route on the root URL (‘/’ path) of the server.
+
+const express = require('express');
 const app = express();
 const PORT = 3000;
-app.get('/home',(req,res)=>{
-    res.set('Content-Type','text/html');
-    res.status(200).send("<h1>hello welcome!!!</h1>");
-});
-app.listen(PORT,(error)=>{
+
+
+app.use(express.json());
+app.post('/',(req, res)=>{
+    const {name} = req.body;
+    res.send(`welcome ${name}`);
+})
+
+app.listen(PORT, (error)=>{
     if(!error)
-        console.log("server running on port "+PORT);
+        console.log("server is successfully running at port" ,+PORT);
     else
-        console.log("error occurred ",error);
-}
-);
+        console.log("error occurred , server can't start",error);
+});
 
